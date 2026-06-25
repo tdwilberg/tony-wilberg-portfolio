@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>document.documentElement.classList.add('js')</script>
+<title>Tony Wilberg — AI Platform Engineer</title>
+<meta name="description" content="AI platform engineer. Builds and operates production-grade multi-agent AI systems on a self-hosted fleet. 20 years of IT operations behind it." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0E1217; --ink-2:#141A21; --ink-3:#1B2530; --line:#28333F;
+    --text:#E8ECEF; --dim:#94A2AE; --faint:#5E6C78;
+    --signal:#56D6C2; --signal-soft:rgba(86,214,194,.12); --amber:#E6A867;
+    --display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+    --body:"Inter",ui-sans-serif,system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --maxw:1060px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);color:var(--text);font-family:var(--body);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(900px 500px at 78% -8%,rgba(86,214,194,.07),transparent 60%);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--signal)}
+  .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);
+    background:rgba(14,18,23,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:var(--mono);font-size:.82rem;letter-spacing:.12em;color:var(--text);display:flex;align-items:center;gap:9px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 0 rgba(86,214,194,.5);animation:pulse 2.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(86,214,194,.45)}70%{box-shadow:0 0 0 7px rgba(86,214,194,0)}100%{box-shadow:0 0 0 0 rgba(86,214,194,0)}}
+  .navlinks{display:flex;gap:26px;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:var(--dim)}
+  .navlinks a:hover{color:var(--signal)}
+  @media(max-width:640px){.navlinks{display:none}}
+
+  /* hero */
+  header{padding:84px 0 60px;position:relative}
+  .hgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  @media(max-width:860px){.hgrid{grid-template-columns:1fr;gap:36px}}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,5.6vw,3.85rem);
+    line-height:1.04;letter-spacing:-.02em;margin:18px 0 20px}
+  h1 .hl{color:var(--signal)}
+  .lede{font-size:1.08rem;color:var(--dim);max-width:42ch}
+  .statline{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--ink-2)}
+  .chip b{color:var(--signal);font-weight:500}
+
+  /* node graph signature */
+  .graph{width:100%;max-width:360px;margin:0 auto;display:block}
+  .glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;fill:var(--dim)}
+  .ghub{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;fill:var(--text)}
+  .edge{stroke:var(--line);stroke-width:1.2}
+  .edge-live{stroke:var(--signal);stroke-width:1.4;opacity:.5;stroke-dasharray:3 4;animation:flow 5s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-28}}
+
+  /* sections */
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  .shead{display:flex;align-items:baseline;gap:14px;margin-bottom:34px}
+  .shead h2{font-family:var(--display);font-weight:600;font-size:1.7rem;letter-spacing:-.01em}
+  .shead .idx{font-family:var(--mono);font-size:.72rem;color:var(--signal);letter-spacing:.12em}
+  .lead-p{color:var(--dim);max-width:64ch;margin-bottom:8px}
+
+  /* pillars */
+  .pillars{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
+  .card{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--ink-2),rgba(20,26,33,.4));
+    padding:26px 26px 24px;transition:border-color .2s ease,transform .2s ease}
+  .card:hover{border-color:#3a4956;transform:translateY(-2px)}
+  .card.hub{border-color:rgba(86,214,194,.35);box-shadow:0 0 0 1px rgba(86,214,194,.06) inset}
+  .ctop{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .cname{font-family:var(--display);font-weight:600;font-size:1.3rem}
+  .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:4px 9px;border-radius:6px;border:1px solid var(--line);color:var(--dim)}
+  .tag.center{color:var(--signal);border-color:rgba(86,214,194,.4);background:var(--signal-soft)}
+  .role{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+  .card p{color:var(--dim);font-size:.96rem;margin-bottom:14px}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .card li{position:relative;padding-left:20px;font-size:.9rem;color:var(--text)}
+  .card li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:1px;background:var(--signal);transform:rotate(45deg)}
+  .placeholder{margin-top:16px;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--faint);
+    border-top:1px dashed var(--line);padding-top:12px}
+
+  /* capabilities */
+  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  @media(max-width:640px){.caps{grid-template-columns:1fr}}
+  .cap{background:var(--ink-2);padding:22px 22px}
+  .cap .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:8px}
+  .cap h3{font-family:var(--display);font-weight:600;font-size:1.05rem;margin-bottom:6px}
+  .cap p{color:var(--dim);font-size:.88rem}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:40px}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:24px}}
+  .about p{color:var(--dim);margin-bottom:16px;max-width:60ch}
+  .about p strong{color:var(--text);font-weight:600}
+  .facts{border-left:1px solid var(--line);padding-left:24px;display:flex;flex-direction:column;gap:18px}
+  .fact .n{font-family:var(--display);font-weight:600;font-size:1.5rem;color:var(--text)}
+  .fact .l{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+
+  /* contact */
+  .contact{text-align:center;padding:78px 0}
+  .contact h2{font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.01em;margin-bottom:14px}
+  .contact p{color:var(--dim);margin-bottom:30px}
+  .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;border:1px solid var(--line);
+    border-radius:8px;padding:12px 20px;color:var(--text);background:var(--ink-2);transition:.2s}
+  .btn:hover{border-color:var(--signal);color:var(--signal)}
+  .btn.primary{background:var(--signal);color:#06201C;border-color:var(--signal);font-weight:500}
+  .btn.primary:hover{background:#6fe0cd;color:#06201C}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--faint);
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .js .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto}
+    .js .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>TONY&nbsp;WILBERG</div>
+    <div class="navlinks">
+      <a href="#system">System</a>
+      <a href="#build">How it's built</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hgrid">
+    <div>
+      <div class="eyebrow">AI Platform Engineer · Orange, Virginia</div>
+      <h1>I build production AI systems<br>and <span class="hl">run them in production.</span></h1>
+      <p class="lede">A self-hosted, multi-agent AI platform — orchestration, retrieval, and autonomous agents — built and operated end to end. Twenty years of real IT operations underneath it.</p>
+      <div class="statline">
+        <span class="chip"><b>Self-hosted</b> fleet</span>
+        <span class="chip"><b>Multi-agent</b> orchestration</span>
+        <span class="chip"><b>Built</b> solo</span>
+      </div>
+    </div>
+    <div>
+      <!-- signature: hub-and-spoke topology, true to the architecture -->
+      <svg class="graph" viewBox="0 0 320 300" role="img" aria-label="DreamBox orchestrates Dereth and TradeBot across a self-hosted fleet">
+        <line class="edge-live" x1="160" y1="150" x2="160" y2="58"/>
+        <line class="edge-live" x1="160" y1="150" x2="64" y2="214"/>
+        <line class="edge-live" x1="160" y1="150" x2="256" y2="214"/>
+        <line class="edge" x1="160" y1="150" x2="58" y2="96"/>
+        <line class="edge" x1="160" y1="150" x2="262" y2="96"/>
+        <line class="edge" x1="160" y1="150" x2="160" y2="252"/>
+        <!-- satellite service nodes -->
+        <circle cx="58" cy="96" r="4" fill="#28333F"/>
+        <circle cx="262" cy="96" r="4" fill="#28333F"/>
+        <circle cx="160" cy="252" r="4" fill="#28333F"/>
+        <!-- hub -->
+        <circle cx="160" cy="150" r="30" fill="#141A21" stroke="#56D6C2" stroke-width="1.4"/>
+        <circle cx="160" cy="150" r="30" fill="none" stroke="#56D6C2" stroke-width="1.4" opacity="0.35"><animate attributeName="r" values="30;40;30" dur="3.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="3.4s" repeatCount="indefinite"/></circle>
+        <text class="ghub" x="160" y="154" text-anchor="middle">DreamBox</text>
+        <!-- spoke nodes -->
+        <circle cx="160" cy="50" r="17" fill="#141A21" stroke="#E6A867" stroke-width="1.2"/>
+        <text class="glabel" x="160" y="53" text-anchor="middle" fill="#E6A867">RAD</text>
+        <circle cx="56" cy="222" r="17" fill="#141A21" stroke="#28333F" stroke-width="1.2"/>
+        <text class="glabel" x="56" y="225" text-anchor="middle">Dereth</text>
+        <circle cx="264" cy="222" r="17" fill="#141A21" stroke="#28333F" stroke-width="1.2"/>
+        <text class="glabel" x="264" y="225" text-anchor="middle">TradeBot</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="system">
+  <div class="wrap">
+    <div class="shead reveal"><span class="idx">01</span><h2>The system</h2></div>
+    <p class="lead-p reveal">One platform at the center, two autonomous systems built on the capabilities it proves out. The center is the product; the others are what it can do.</p>
+    <div class="pillars">
+
+      <div class="card hub reveal">
+        <div class="ctop"><span class="cname">DreamBox</span><span class="tag center">Platform · centerpiece</span></div>
+        <div class="role">Multi-agent AI platform</div>
+        <p>A sovereign, self-hosted AI platform. It started from one rule — keep the work private, nothing leaks out — and grew into a system that hosts AI agents, routes work between them, and runs as a coordinated fleet across multiple machines. If it can be reasoned through and built, this is where it gets built.</p>
+        <ul>
+          <li>Intent-based agent orchestration — routes work to specialized agents on commit events, with a shadow-to-live cutover and instant rollback.</li>
+          <li>Retrieval (RAG) over a vector store, exposed to agents and editors through a Model Context Protocol (MCP) bridge.</li>
+          <li>Least-privilege agent design: per-agent tool allowlists, human-in-the-loop review before anything is published.</li>
+          <li>Model-selection evaluation and cost-aware routing — local generation gated by a frontier-model reviewer.</li>
+        </ul>
+        <div class="placeholder">[ add: architecture diagram · repo link · 2-min walkthrough ]</div>
+      </div>
+
+      <div class="card reveal">
+        <div class="ctop"><span class="cname">Dereth</span><span class="tag">Demonstration</span></div>
+        <div class="role">Machine learning · computer vision · navigation</div>
+        <p>An autonomous agent that perceives a live environment and decides what to do in it — the thinking engine written from the ground up, not a script following fixed paths. The proving ground for the ML and perception work that feeds the rest of the platform.</p>
+        <ul>
+          <li>Reads live state and drives combat, looting, and navigation through ML-based decision-making.</li>
+          <li>Building a SLAM-based spatial-mapping and computer-vision pipeline with an ML layer for task and quest selection.</li>
+        </ul>
+        <div class="placeholder">[ add: gameplay/agent demo clip · repo link ]</div>
+      </div>
+
+      <div class="card reveal">
+        <div class="ctop"><span class="cname">TradeBot</span><span class="tag">Demonstration</span></div>
+        <div class="role">Autonomous decision system · disciplined validation</div>
+        <p>An autonomous, multi-asset trading system built the right way: paper-first, validated before a single dollar is at risk. The point isn't a lucky trade — it's engineering judgment and risk discipline in an environment that punishes both.</p>
+        <ul>
+          <li>Multi-asset (futures / options / equities) with strategy evaluation and backtesting ahead of any live decision.</li>
+          <li>Execution engineered to take emotion out of timing; live deployment is a deliberate, gated step, not a default.</li>
+        </ul>
+        <div class="placeholder">[ add: dashboard screenshot · results summary (when meaningful) ]</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <div class="shead reveal"><span class="idx">02</span><h2>How it's built</h2></div>
+    <p class="lead-p reveal">The capabilities that show up across the work — and the ones the current AI-engineering market screens for first.</p>
+    <div class="caps reveal">
+      <div class="cap"><div class="k">Orchestration</div><h3>Multi-agent routing</h3><p>Intent-based dispatch to specialized agents, shadow-to-live cutover, instant rollback.</p></div>
+      <div class="cap"><div class="k">Retrieval</div><h3>RAG + MCP</h3><p>Vector-store retrieval and a Model Context Protocol bridge serving agents and IDE clients.</p></div>
+      <div class="cap"><div class="k">Evaluation</div><h3>Evals + cost-aware routing</h3><p>Model-selection benchmarking; local generation gated by a frontier reviewer to control spend.</p></div>
+      <div class="cap"><div class="k">Safety</div><h3>Least-privilege agents</h3><p>Per-agent tool allowlists and tier/egress guards; human review before anything publishes.</p></div>
+      <div class="cap"><div class="k">Operations</div><h3>Self-hosted fleet</h3><p>Linux/systemd services and containers across multiple networked hosts, run as production.</p></div>
+      <div class="cap"><div class="k">Foundation</div><h3>20 years of IT</h3><p>Identity & access at scale, fleet lifecycle, OS migrations, ERP go-lives across real orgs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="shead reveal"><span class="idx">03</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about reveal">
+        <p>I spent twenty years keeping real environments running — healthcare, K&ndash;12 districts, medical-device manufacturing. Identity and access for thousands of users, fleet imaging and migrations, ERP go-lives where downtime had a price tag. I learned how systems actually behave when people depend on them.</p>
+        <p>Then I built my own. <strong>DreamBox is a working answer to a simple thesis: with the right tools and the room to use them, I can build the thing.</strong> It began as a private place to do AI work without anything leaking, and became a multi-agent platform that does real work on its own hardware. TradeBot and Dereth are what that platform makes possible — autonomous systems built to prove out decision-making, machine learning, and perception.</p>
+        <p>This is not a side project. It's a deliberate body of engineering work, built to a production standard, aimed at the problems companies are paying to solve right now.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><div class="n">20 yrs</div><div class="l">IT operations</div></div>
+        <div class="fact"><div class="n">3× AAS</div><div class="l">Cybersecurity · Systems · Networking — Summa Cum Laude</div></div>
+        <div class="fact"><div class="n">Azure</div><div class="l">AZ-900 · AZ-104 in progress</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="justify-content:center">Open to AI platform / MLOps / AI solutions roles</div>
+    <h2 class="reveal">Let's talk.</h2>
+    <p class="reveal">Hybrid or remote · available for direct hire and project work.</p>
+    <div class="links reveal">
+      <a class="btn primary" href="mailto:tdwilberg@gmail.com">tdwilberg@gmail.com</a>
+      <a class="btn" href="#" data-fill="linkedin">LinkedIn →</a>
+      <a class="btn" href="#" data-fill="github">GitHub →</a>
+      <a class="btn" href="#" data-fill="resume">Résumé (PDF) →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:var(--maxw);flex-wrap:wrap;gap:10px">
+    <span>TONY WILBERG · ORANGE, VA · 703-785-2161</span>
+    <span>BUILT &amp; HOSTED INDEPENDENTLY</span>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
